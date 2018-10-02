@@ -373,3 +373,14 @@ ldecimal& ldecimal::operator-= (digit rhs_dgt)
 
 	return *this;
 }
+
+ldecimal& ldecimal::operator= (const ldecimal& ld)
+{
+	if (&*this != &ld)
+	{
+		value = ld.value;
+		sign = ld.sign;
+	}
+
+	return *this;
+}

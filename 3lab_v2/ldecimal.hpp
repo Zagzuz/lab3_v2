@@ -20,14 +20,17 @@ public:
 	ldecimal(ldecimal&&) = default;
 	ldecimal(const ldecimal& ld) : value(ld.value), sign(ld.sign) {}
 
+	ldecimal& operator= (const ldecimal& ld);
+
 	void divide_by_10();
 	void multiply_by_10();
+
+	ldecimal& operator+= (digit);
+	ldecimal& operator-= (digit);
 
 	ldecimal operator~ () const;
 	ldecimal& to_ones_complement();
 
-	ldecimal& operator+= (digit);
-	ldecimal& operator-= (digit);
 	friend ldecimal operator+ (ldecimal, ldecimal);
 	friend ldecimal operator- (ldecimal, ldecimal);
 
@@ -39,7 +42,6 @@ public:
 	friend std::istream& operator>> (std::istream&, ldecimal&);
 	friend std::ostream& operator<< (std::ostream&, const ldecimal&);
 	
-	ldecimal& operator= (const ldecimal& ld) { value = ld.value; sign = ld.sign; return *this; }
 };
 
 ldecimal operator"" _ld(uint64_t);
